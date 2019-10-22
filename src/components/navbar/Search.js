@@ -1,11 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ImagesContext } from '../../context';
 
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {
-  Button,
   Dropdown,
   InputGroup,
   FormControl,
@@ -13,39 +12,47 @@ import {
 } from 'react-bootstrap';
 
 const Search = () => {
-  const [searchText, setSearchText] = useState('');
-
+  const [searchText, setText] = useState('');
   const [amount, setAmount] = useState('20');
 
   const [apiURL, setApiURL] = useState('https://pixabay.com/api');
 
-  const [API_KEY, setAPI_KEY] = useState('13956488-7b5fc6a4e99a50d0196a80d52');
-
-  //const [images, setImages] = useState([]);
   const [images, setImages] = useContext(ImagesContext);
 
-  const onTextChange = e => {
-    const val = e.target.value;
-    setSearchText(val);
+  useEffect(() => {
+    getImages();
+  }, [amount]);
 
-    if (val === '') {
+  useEffect(() => {
+    getImages();
+  }, [searchText]);
+
+  const getImages = () => {
+    if (searchText === '') {
       setImages([]);
     } else {
       axios
         .get(
-          `${apiURL}/?key=${API_KEY}&q=${searchText}&image_type=photo&per_page=${amount}&safesearch=true`
+          `${apiURL}/?key=${process.env.REACT_APP_API_KEY}&q=${searchText}&image_type=photo&per_page=${amount}&safesearch=true`
         )
         .then(res => setImages(res.data.hits))
         .catch(err => console.log(err));
     }
   };
 
-  const onAmountChange = value => setAmount(value);
+  const changeText = e => {
+    //let searchText = e.target.value;
+    setText(e.target.value);
+  };
+
+  const onAmountChange = value => {
+    setAmount(value);
+  };
   return (
     <InputGroup style={{ flexBasis: '70%' }}>
       <FormControl
-        placeholder={searchText || 'Search for images'}
-        onChange={onTextChange}
+        placeholder={'Search for images'}
+        onChange={changeText}
         aria-label='Search for images'
         aria-describedby='basic-addon2'
       />

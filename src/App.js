@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Navbar from './components/navbar/Navbar';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './App.css';
 import { ImagesProvider } from './context';
+import FoundImages from './components/foundImages/FoundImages';
 
 class App extends Component {
   render() {
@@ -9,8 +11,9 @@ class App extends Component {
       <ImagesProvider>
         <div className='App'>
           <Navbar />
-
-          <h1 className='m-3'>Content will be placed here...</h1>
+          <MuiThemeProvider>
+            <FoundImages />
+          </MuiThemeProvider>
         </div>
       </ImagesProvider>
     );
