@@ -12,7 +12,9 @@ class App extends Component {
         <div className='App'>
           <Navbar />
           <MuiThemeProvider>
-            <FoundImages />
+            <div style={{ padding: '2rem' }}>
+              <FoundImages />
+            </div>
           </MuiThemeProvider>
         </div>
       </ImagesProvider>

@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <React.Fragment>
       <nav className='navbar navbar-dark bg-dark d-flex flex-row justify-content-around'>
-        <div className='d-flex' style={{ flexBasis: '20%' }}>
+        <div className='d-flex' style={{ flexBasis: '25%' }}>
           <div>
             <img src={logo} className='' />
           </div>
