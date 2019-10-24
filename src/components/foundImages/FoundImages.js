@@ -5,8 +5,6 @@ import ZoomIn from 'material-ui/svg-icons/action/zoom-in';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import withWidth from '@material-ui/core/withWidth';
 import { ImagesContext } from '../../context';
 
